@@ -47,6 +47,8 @@ get_username() {
       continue
     fi
 
+    break
+
   done
 
   echo "Username=${USERNAME}" >>"$(dirname "$0")/config.env"
@@ -63,8 +65,8 @@ get_root_password() {
     read -rs ROOT_PASSWORD
     echo
 
-    if [[ "$ROOT_PASSWORD" != "$ROOT_PASSWORD_CONFIRM" ]]; then
-      warn "Root passwords do not match. Please try again."
+    if [[ -z "$ROOT_PASSWORD" ]]; then
+      warn "Root password cannot be empty. Please try again."
       continue
     fi
 
@@ -72,10 +74,12 @@ get_root_password() {
     read -rs ROOT_PASSWORD_CONFIRM
     echo
 
-    if [[ -z "$ROOT_PASSWORD" ]]; then
-      warn "Root password cannot be empty. Please try again."
+    if [[ "$ROOT_PASSWORD" != "$ROOT_PASSWORD_CONFIRM" ]]; then
+      warn "Root passwords do not match. Please try again."
       continue
     fi
+
+    break
 
   done
 
@@ -93,17 +97,19 @@ get_user_password() {
     read -rs USER_PASSWORD
     echo
 
-    if [[ "$USER_PASSWORD" != "$USER_PASSWORD_CONFIRM" ]]; then
-      warn "User passwords do not match. Please try again."
+    if [[ -z "$USER_PASSWORD" ]]; then
+      warn "User password cannot be empty. Please try again."
     fi
 
     info "Confirm password for ${USERNAME}:"
     read -rs USER_PASSWORD_CONFIRM
     echo
 
-    if [[ -z "$USER_PASSWORD" ]]; then
-      warn "User password cannot be empty. Please try again."
+    if [[ "$USER_PASSWORD" != "$USER_PASSWORD_CONFIRM" ]]; then
+      warn "User passwords do not match. Please try again."
     fi
+
+    break
 
   done
 
@@ -127,6 +133,8 @@ get_timezone() {
       continue
     fi
 
+    break
+
   done
 
   echo "TIMEZONE=${TIMEZONE}" >>"$(dirname "$0")/config.env"
@@ -147,6 +155,8 @@ get_locale() {
       warn "Invlaid locale: ${LOCALE}. Please try again."
       continue
     fi
+
+    break
 
   done
 
