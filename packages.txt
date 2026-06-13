@@ -98,6 +98,7 @@ milou
 polkit-kde-agent
 powerdevil
 systemsettings
+sddm
 sddm-kcm
 kvantum
 kvantum-qt5
@@ -135,8 +136,12 @@ discord
 spotify-launcher
 steam
 print-manager
+cups
 
 # Audio / Video
+pipewire
+wireplumber
+pipewire-pulse
 pipewire-alsa
 pipewire-jack
 gst-plugin-pipewire
@@ -144,7 +149,7 @@ pavucontrol
 pamixer
 ffmpegthumbs
 
-# Display / Wayland / Hyprland
+# Display / Wayland
 xdg-desktop-portal-kde
 
 # GPU / Hardware
@@ -160,6 +165,7 @@ lib32-ocl-icd
 networkmanager
 network-manager-applet
 dnsmasq
+bluez
 bluez-utils
 blueman
 bluedevil
@@ -173,6 +179,16 @@ virt-manager
 noto-fonts-cjk
 
 # System Utilities
+xdg-utils
+tlp-pd
+glfw
+pacman-contrib
+reflector
+ntfs-3g
+firewalld
+man-db
+man-pages
+wl-clipboard
 brightnessctl
 cliphist
 dunst
