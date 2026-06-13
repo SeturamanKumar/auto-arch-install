@@ -50,7 +50,7 @@ remove_build_user() {
   info "Removing temporary build user..."
 
   userdel -r builduser
-  rm -f /etc/sudoers.s/builduser
+  rm -f /etc/sudoers.d/builduser
 
   info "Build user removed."
 

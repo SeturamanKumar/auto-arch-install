@@ -55,7 +55,7 @@ create_user() {
   echo "${USERNAME}:${USER_PASSWORD}" | chpasswd
 
   info "Enabling sudo for wheel group..."
-  sed -i 's/^# %wheel ALL(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
+  sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
   info "User ${USERNAME} created."
 
 }

@@ -8,11 +8,11 @@ unmount_partitions() {
 
   info "Unmounting partitions..."
 
-  unmount -R /mnt
-
   if [[ "$SWAP_SIZE" -gt 0 ]]; then
     swapoff /mnt/swap/swapfile
   fi
+
+  umount -R /mnt
 
   info "Paritions unmounted."
 
