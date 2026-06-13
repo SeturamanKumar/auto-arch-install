@@ -155,6 +155,7 @@ get_locale() {
 
 }
 
+# Run the script for taking inputs
 get_hostname
 get_username
 get_root_password
