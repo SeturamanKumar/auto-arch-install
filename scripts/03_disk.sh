@@ -13,7 +13,7 @@ detect_disk() {
   local DISK_COUNT
   DISK_COUNT=$(echo "$DISKS" | wc -l)
 
-  if [[ "$DISKS" -eq 1 ]]; then
+  if [[ -z "$DISKS" ]]; then
     error "No disks detected."
   fi
 
@@ -26,7 +26,7 @@ detect_disk() {
     echo "$DISKS" | nl -w2 -s') '
     info "Enter the number of the disk to install Arch on:"
     read -r DISK_NUM
-    DISK=$(echo "$DISKS" | sed -n "${DISK_NUM}p" | awk '{print 1}')
+    DISK=$(echo "$DISKS" | sed -n "${DISK_NUM}p" | awk '{print $1}')
 
     if [[ -z "$DISK" ]]; then
       error "Invalid selection."
@@ -144,7 +144,7 @@ partition_fresh() {
     parted -s "$DISK" mkpart primary btrfs 513MiB 100%
 
   else
-    parted -s "$DISK" mklabel msods
+    parted -s "$DISK" mklabel msdos
     parted -s "$DISK" mkpart primary fat32 1MiB 513MiB
     parted -s "$DISK" mkpart primary btrfs 513MiB 100%
     parted -s "$DISK" set 1 boot on
@@ -292,7 +292,7 @@ create_subvolumes() {
   btrfs subvolume create /mnt/@snapshots
   btrfs subvolume create /mnt/@swap
 
-  unmount /mnt
+  umount /mnt
 
   info "Subvolumes created."
 
@@ -302,6 +302,9 @@ create_subvolumes() {
 mount_partitions() {
 
   info "Mounting partitions..."
+
+  # Mounting EFI Partition
+  mount "$EFI_PART" /mnt/boot/efi
 
   # Mount root of subvolumes``
   mount -o subvol=@,compress=zstd,noatime "$ROOT_PART" /mnt
@@ -316,7 +319,7 @@ mount_partitions() {
 
   # Mount EFI partitions
 
-  if [[ "SWAP_SIZE" -gt 0 ]]; then
+  if [[ "$SWAP_SIZE" -gt 0 ]]; then
     info "Creating swapfile of ${SWAP_SIZE}GB..."
     btrfs filesystem mkswapfile --size "${SWAP_SIZE}g" /mnt/swap/swapfile
     swapon /mnt/swap/swapfile
