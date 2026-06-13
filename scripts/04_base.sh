@@ -31,7 +31,7 @@ install_base() {
 # Generate fstab for the partitions
 generate_fstab() {
 
-  info "Geberating fstab..."
+  info "Generating fstab..."
 
   genfstab -U /mnt >>/mnt/etc/fstab
 

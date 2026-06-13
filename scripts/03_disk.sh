@@ -185,7 +185,7 @@ partition_dualboot() {
   FREE_SPACE=$(parted -s "$DISK" unit MiB print free | grep "Free Space" | tail -n 1)
 
   if [[ -z "$FREE_SPACE" ]]; then
-    error "No unallocated free space found on ${DISK}. Please feel free up space and try again."
+    error "No unallocated free space found on ${DISK}. Please free up space and try again."
   fi
 
   local FREE_START FREE_END FREE_SIZE
@@ -303,9 +303,6 @@ mount_partitions() {
 
   info "Mounting partitions..."
 
-  # Mounting EFI Partition
-  mount "$EFI_PART" /mnt/boot/efi
-
   # Mount root of subvolumes``
   mount -o subvol=@,compress=zstd,noatime "$ROOT_PART" /mnt
 
@@ -317,7 +314,8 @@ mount_partitions() {
   mount -o subvol=@snapshots,compress=zstd,noatime "$ROOT_PART" /mnt/.snapshots
   mount -o subvol=@swap "$ROOT_PART" /mnt/swap
 
-  # Mount EFI partitions
+  # Mounting EFI Partition
+  mount "$EFI_PART" /mnt/boot/efi
 
   if [[ "$SWAP_SIZE" -gt 0 ]]; then
     info "Creating swapfile of ${SWAP_SIZE}GB..."
