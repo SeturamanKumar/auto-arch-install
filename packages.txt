@@ -15,7 +15,6 @@ intel-ucode
 sof-firmware
 
 # Shell
-zsh
 bash-completion
 
 # Dev Tools
@@ -145,19 +144,7 @@ pamixer
 ffmpegthumbs
 
 # Display / Wayland / Hyprland
-hyprland
-hyprpicker
-waybar
-wofi
-dunst
-slurp
-cliphist
-udiskie
-feh
-xdg-desktop-portal-hyprland
 xdg-desktop-portal-kde
-wlogout
-brightnessctl
 
 # GPU / Hardware
 nvidia-open

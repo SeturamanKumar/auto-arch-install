@@ -1,22 +1,15 @@
 # Shell
-oh-my-zsh-git
-zsh-theme-powerlevel10k-git
 
 # Dev Tools
-visual-studio-code-bin
 terraform-ls
 opencode
 
 # Apps
 google-chrome
 zen-browser-bin
-zapzap
 bottles
 
 # Display / Wayland
-grimblast-git
-swaylock-effects-git
-hyde-cli-git
 
 # GPU / Hardware
 python-pyamdgpuinfo
@@ -26,5 +19,4 @@ cloudflare-warp-bin
 
 # System Utilities
 downgrade
-ventoy-bin
 input-remapper-git
