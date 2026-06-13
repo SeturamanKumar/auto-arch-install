@@ -18,6 +18,7 @@ sof-firmware
 bash-completion
 
 # Dev Tools
+opencode
 git
 neovim
 vim
@@ -172,6 +173,11 @@ virt-manager
 noto-fonts-cjk
 
 # System Utilities
+brightnessctl
+cliphist
+dunst
+feh
+udiskie
 fastfetch
 less
 tlp
