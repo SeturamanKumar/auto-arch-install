@@ -9,7 +9,7 @@ check_internet() {
 
   info "Checking Internet connectivity..."
 
-  if ! ping -c 2 -W 3 -w 8.8.8.8 &>/dev/null; then
+  if ! curl -s --max-time 10 https://archlinux.org >/dev/null 2>&1; then
     error "No internet connection detected. Please connect and retry."
   fi
 
