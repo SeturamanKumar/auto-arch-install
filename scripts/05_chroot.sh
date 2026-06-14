@@ -94,11 +94,12 @@ install_grub() {
 
   info "Installing GRUB bootloader..."
 
-  # Ensure EFI partitions is mounted
-  mkdir -p /boot/efi
-  mount "$EFI_PART" /boot/efi
-
   if [[ "$BOOT_MODE" == "UEFI" ]]; then
+
+    # Ensure EFI partitions is mounted
+    mkdir -p /boot/efi
+    mount "$EFI_PART" /boot/efi
+
     grub-install \
       --target=x86_64-efi \
       --efi-directory=/boot/efi \
