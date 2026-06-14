@@ -213,13 +213,13 @@ partition_dualboot() {
   EFI_START="$FREE_START"
   EFI_END=$(echo "$FREE_START + 512" | bc)
   ROOT_START=$(echo "$EFI_END + 1" | bc)
-  ROOT_END="$FREE_END"
+  ROOT_END="100%"
 
   # Confirming partitions
   echo
   info "The following partition will be created on ${DISK}:"
   echo "EFI: ${EFI_START}MiB -> ${EFI_END}MiB (512MiB)"
-  echo "Root: ${ROOT_START}MiB -> ${ROOT_END}MiB (Remaining space)"
+  echo "Root: ${ROOT_START}MiB -> end of disk (Remaining space)"
   echo
   warn "Existing partitions will NOT be touched."
   warn "Are you sure you want to proceed? (type YES in capitals to confirm):"
