@@ -19,6 +19,7 @@ bash-completion
 
 # Dev Tools
 opencode
+tflint
 git
 neovim
 vim
@@ -31,7 +32,6 @@ docker
 docker-compose
 ansible
 terraform
-tflint
 tmux
 jq
 fd
@@ -179,8 +179,8 @@ virt-manager
 noto-fonts-cjk
 
 # System Utilities
-xdg-utils
 tlp-pd
+xdg-utils
 glfw
 pacman-contrib
 reflector

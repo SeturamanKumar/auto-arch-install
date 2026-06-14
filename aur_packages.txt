@@ -2,7 +2,6 @@
 
 # Dev Tools
 terraform-ls
-opencode
 
 # Apps
 google-chrome
