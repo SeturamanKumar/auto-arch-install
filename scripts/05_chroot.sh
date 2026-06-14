@@ -49,8 +49,12 @@ create_user() {
 
   info "Creating User ${USERNAME}"
   useradd -m -G wheel,docker,libvirt,input,video,audio,storage,network -s /bin/bash "$USERNAME"
-  info "Setting passwords..."
 
+  if [[ $? -ne 0 ]]; then
+    warn "useradd failed. Check /auto-arch-install/install.log"
+  fi
+
+  info "Setting passwords..."
   echo "root:${ROOT_PASSWORD}" | chpasswd
   echo "${USERNAME}:${USER_PASSWORD}" | chpasswd
 
@@ -68,7 +72,12 @@ install_packages() {
   info "Installing packages from packages.txt..."
   local PACKAGES
   PACKAGES=$(grep -v '^\s*#' /auto-arch-install/packages.txt | grep -v '^\s*$' | tr '\n' ' ')
-  pacman -S --needed --noconfirm $PACKAGES
+  pacman -S --needed --noconfirm $PACKAGES 2>&1 | tee -a /auto-arch-install/install.log
+
+  if [[ $? -ne 0 ]]; then
+    warn "Package installation failed. Check /auto-arch-install/install.log"
+  fi
+
   info "Packages installed."
 
 }
