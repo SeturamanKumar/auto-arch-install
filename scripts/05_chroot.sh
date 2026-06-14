@@ -73,38 +73,6 @@ install_packages() {
 
 }
 
-# Enable services
-enable_services() {
-
-  info "Enabling services..."
-
-  # Core services
-  systemctl enable NetworkManager
-  systemctl enable bluetooth
-  systemctl enable sddm
-
-  # Power management
-  systemctl enable tlp
-  systemctl enable tlp-sleep
-
-  # Virtualization
-  systemctl enable libvirtd
-  systemctl enable docker
-
-  # Server
-  systemctl enable nginx
-  systemctl enable monit
-
-  # SSH
-  systemctl enable sshd
-
-  # Disable hibernate
-  systemctl mask sleep.target suspend-then-hibernate.target hibernate.target hybrid-sleep.target
-
-  info "Services enabled."
-
-}
-
 # Install and configure GRUB
 install_grub() {
 
@@ -146,7 +114,6 @@ set_locale
 set_hostname
 create_user
 install_packages
-enable_services
 install_grub
 
 info "System configuration complete."
