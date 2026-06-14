@@ -57,6 +57,8 @@ create_user() {
   info "Enabling sudo for wheel group..."
   sed -i 's/^# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/' /etc/sudoers
   info "User ${USERNAME} created."
+  info "ROOT_PASSWORD length: ${#ROOT_PASSWORD}"
+  info "USER_PASSWORD length: ${#USER_PASSWORD}"
 
 }
 
@@ -108,12 +110,17 @@ install_grub() {
 
   info "Installing GRUB bootloader..."
 
+  # Ensure EFI partitions is mounted
+  mkdir -p /boot/efi
+  mount "$EFI_PART" /boot/efi
+
   if [[ "$BOOT_MODE" == "UEFI" ]]; then
     grub-install \
       --target=x86_64-efi \
       --efi-directory=/boot/efi \
       --bootloader-id=GRUB \
-      --recheck
+      --recheck \
+      --removable
 
   else
     grub-install \
