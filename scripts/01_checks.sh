@@ -9,7 +9,7 @@ check_internet() {
 
   info "Checking Internet connectivity..."
 
-  if ! ping -c 2 -W 3 archlinux.org &>/dev/null; then
+  if ! ping -c 2 -W 3 -w 8.8.8.8 &>/dev/null; then
     error "No internet connection detected. Please connect and retry."
   fi
 
