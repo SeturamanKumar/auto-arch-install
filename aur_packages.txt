@@ -4,14 +4,11 @@
 terraform-ls
 
 # Apps
-google-chrome
-zen-browser-bin
 bottles
 
 # Display / Wayland
 
 # GPU / Hardware
-python-pyamdgpuinfo
 
 # Networking
 cloudflare-warp-bin

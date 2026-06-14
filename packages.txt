@@ -46,6 +46,8 @@ net-tools
 whois
 bind
 parallel
+postgresql
+redis
 
 # Server Tools
 nginx
@@ -127,7 +129,6 @@ kitty
 spectacle
 ark
 discover
-foot
 gparted
 libreoffice-fresh
 mpv
@@ -157,9 +158,6 @@ nvidia-open
 nvidia-utils
 nvidia-prime
 vulkan-radeon
-cuda
-cudnn
-lib32-ocl-icd
 
 # Networking
 networkmanager
@@ -188,7 +186,6 @@ ntfs-3g
 firewalld
 man-db
 man-pages
-wl-clipboard
 brightnessctl
 cliphist
 dunst
@@ -211,8 +208,6 @@ xpad
 # Gaming
 wine
 wine-mono
-godot
-godot-mono
 prismlauncher
 
 # Java
