@@ -14,7 +14,6 @@ enable_services() {
 
   # Power management
   systemctl enable tlp
-  systemctl enable tlp-sleep
 
   # Virtualization
   systemctl enable libvirtd
