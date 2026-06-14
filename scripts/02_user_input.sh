@@ -51,7 +51,7 @@ get_username() {
 
   done
 
-  echo "Username=${USERNAME}" >>"$(dirname "$0")/config.env"
+  echo "USERNAME=${USERNAME}" >>"$(dirname "$0")/config.env"
   info "Username set to: ${USERNAME}"
 
 }
