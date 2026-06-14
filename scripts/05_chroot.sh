@@ -112,8 +112,8 @@ install_grub() {
 set_timezone
 set_locale
 set_hostname
-create_user
 install_packages
+create_user
 install_grub
 
 info "System configuration complete."
