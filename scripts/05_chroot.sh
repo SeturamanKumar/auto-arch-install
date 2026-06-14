@@ -66,17 +66,24 @@ create_user() {
 
 }
 
+# enable multilib, some pckages need it
+enable_multilib() {
+
+  info "Enabling multilib repository..."
+  sed -i '/^#\[multilib\]/,/^#Include/ s/^#//' /etc/pacman.conf
+  pacman -Sy
+  info "Multilib enabled."
+
+}
+
 # Installing packages
 install_packages() {
 
   info "Installing packages from packages.txt..."
-  local PACKAGES
-  PACKAGES=$(grep -v '^\s*#' /auto-arch-install/packages.txt | grep -v '^\s*$' | tr '\n' ' ')
-  pacman -S --needed --noconfirm $PACKAGES 2>&1 | tee -a /auto-arch-install/install.log
 
-  if [[ $? -ne 0 ]]; then
-    warn "Package installation failed. Check /auto-arch-install/install.log"
-  fi
+  while IFS= read -r PACKAGE; do
+    pacman -S --needed --noconfirm "$PACKAGE" 2>&1 | tee -a /auto-arch-install/install.log
+  done < <(grep -v '^\s*#' /auto-arch-install/packages.txt | grep -v '^\s*$')
 
   info "Packages installed."
 
