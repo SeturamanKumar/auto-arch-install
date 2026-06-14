@@ -23,7 +23,7 @@ bash "$(dirname "$0")/scripts/04_base.sh"
 info "Entering chroot environment..."
 echo
 
-arch-chroot /mnt bash /auto-arch-install/scripts/chroot-install.sh
+arch-chroot /mnt bash /auto-arch-install/chroot-install.sh
 
 # Post chroot-install.sh execution
 info "Chroot complete. Finalizing installation..."
